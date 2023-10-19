@@ -116,7 +116,7 @@ function App() {
           {papers}
         </div>
         <div style={{ padding: "20px", flex: "1" }}>
-          <h2>Selected Papers</h2>
+          <h2>Selected Papers (Sorted in reverse chronological order, by year)</h2>
           {chosenPapers}
         </div>
       </div>
