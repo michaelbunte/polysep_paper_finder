@@ -6,10 +6,10 @@ import { useState } from 'react';
 function App() {
   const find_realistic_date = (str) => {
     const match = str.match(re);
-    if (match == null) { return 0;}
-    if (match.length < 2) { return 0;}
+    if (match == null) { return 0; }
+    if (match.length < 2) { return 0; }
     let matchNum = parseInt(match[1]);
-    if(matchNum >= REALISTIC_DATE_MIN && matchNum <= REALISTIC_DATE_MAX) {
+    if (matchNum >= REALISTIC_DATE_MIN && matchNum <= REALISTIC_DATE_MAX) {
       return matchNum;
     }
     return find_realistic_date(str.slice(match.index + 3, str.length));
@@ -31,25 +31,15 @@ function App() {
     .filter(name => name.toLowerCase().includes(searchText))
     .sort(year_sort);
 
-  
-  const f = filtered_data.map((str) => {
-    const match = str.match(re);
-    if (match == null) { return "0";}
-    if (match.length < 2) { return "0";}
-    return match[1];
-  })
-  console.log(f);
-
   let handleSearchChange = (e) => {
     setSearchText(e.target.value);
   }
 
   let handleAddPress = (e) => {
-    console.log(selectedPapers)
     let item_index = parseInt(e.target.name.split('_')[1]);
     if (selectedPapers.includes(filtered_data[item_index])) { return; }
 
-    setSelectedPapers([...selectedPapers, filtered_data[item_index]]);
+    setSelectedPapers([...selectedPapers, filtered_data[item_index]].sort(year_sort));
   }
 
   let handleRemovePress = (e) => {
@@ -90,22 +80,35 @@ function App() {
   })
 
   return (
-    <div >
-      <button onClick={() => {
-        let output = "";
-        selectedPapers.map((paper) => { output += paper + "\n\n"; })
-        console.log(output);
-        navigator.clipboard.writeText(output);
-      }}>
-        Copy selected papers to clipboard
-      </button>
-      <form>
-        <input
-          placeholder='Search'
-          type="text"
-          style={{ margin: "20px" }}
-          onChange={handleSearchChange} />
-      </form>
+    <div>
+      <div style={{ margin: "20px", display: "flex", flexDirection: "column" }}>
+        <div style={{paddingBottom: "20px"}}>
+          <input
+            placeholder='Search'
+            type="text"
+            onChange={handleSearchChange} />
+          <button style={{marginLeft: "20px"}} onClick={() => {
+            let output = "";
+            selectedPapers.map((paper) => { output += paper + "\n\n"; })
+            navigator.clipboard.writeText(output);
+          }}>
+            Copy selected papers to clipboard
+          </button>
+        </div>
+
+        <div>
+          <strong>Disclaimer:</strong>
+          <div>
+            This program <u>attempts</u> to sort papers chronologically by evaluating the
+            first four digit number within a reasonable timeframe (ie, 1970-2025).
+            It does <i>not</i> pay attention to day or month.
+          </div>
+          <div style={{ paddingTop: "10px" }}>
+            If there are any issues or papers you'd like to have added, please
+            email Michael.
+          </div>
+        </div>
+      </div>
 
       <div style={{ display: "flex" }}>
         <div style={{ padding: "20px", flex: "1" }}>
