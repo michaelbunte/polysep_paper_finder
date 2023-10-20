@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/polysep_paper_finder/static/css/main.073c9b0a.css",
-    "main.js": "/polysep_paper_finder/static/js/main.ce33024f.js",
+    "main.js": "/polysep_paper_finder/static/js/main.6d06bca6.js",
     "static/js/787.c987ed86.chunk.js": "/polysep_paper_finder/static/js/787.c987ed86.chunk.js",
     "static/media/logo.svg": "/polysep_paper_finder/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
     "index.html": "/polysep_paper_finder/index.html",
     "main.073c9b0a.css.map": "/polysep_paper_finder/static/css/main.073c9b0a.css.map",
-    "main.ce33024f.js.map": "/polysep_paper_finder/static/js/main.ce33024f.js.map",
+    "main.6d06bca6.js.map": "/polysep_paper_finder/static/js/main.6d06bca6.js.map",
     "787.c987ed86.chunk.js.map": "/polysep_paper_finder/static/js/787.c987ed86.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.073c9b0a.css",
-    "static/js/main.ce33024f.js"
+    "static/js/main.6d06bca6.js"
   ]
 }
