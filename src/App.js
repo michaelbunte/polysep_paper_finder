@@ -59,6 +59,9 @@ function App() {
     setSelectedPapers([...selectedCopy].sort(year_sort));
   }
 
+  let handleRemoveAll = (e) => {
+    setSelectedPapers([]);
+  }
 
 
   let papers = filtered_data.map((paper, index) => {
@@ -93,20 +96,7 @@ function App() {
 
   return (
     <div>
-      <div style={{ margin: "20px", display: "flex", flexDirection: "column" }}>
-        <div style={{paddingBottom: "20px"}}>
-          <input
-            placeholder='Search'
-            type="text"
-            onChange={handleSearchChange} />
-          <button style={{marginLeft: "20px"}} onClick={() => {
-            let output = "";
-            selectedPapers.map((paper) => { output += paper + "\n\n"; })
-            navigator.clipboard.writeText(output);
-          }}>
-            Copy selected papers to clipboard
-          </button>
-        </div>
+      <div style={{ margin: "20px 20px 0px 20px", display: "flex", flexDirection: "column" }}>
 
         <div>
           <strong>Disclaimer:</strong>
@@ -120,21 +110,44 @@ function App() {
             email Michael.
           </div>
         </div>
+        <div style={{paddingTop: "20px"}}>
+          <input
+            style={{padding: "5px"}}
+            placeholder='Search Papers'
+            type="text"
+            onChange={handleSearchChange} />
+        </div>
       </div>
 
       <div style={{ display: "flex" }}>
-        <div style={{ padding: "20px", flex: "1" }}>
+        <div style={{ padding: "0px 20px 20px 20px", flex: "1" }}>
           <h2>Available Papers</h2>
           <input 
             type="button"
             value="Add All"
-            style={{marginBottom:"20px"}}
+            style={{margin:"0px 20px 20px 0px"}}
             onClick={handleAddAll}
           />
+
+          {`${filtered_data.length} matched papers`}
+          
           {papers}
         </div>
         <div style={{ padding: "20px", flex: "1" }}>
           <h2>Selected Papers (Sorted in reverse chronological order, by year)</h2>
+          <input 
+            type="button"
+            value="Remove All"
+            style={{marginBottom:"20px"}}
+            onClick={handleRemoveAll}
+          />
+          <button style={{marginLeft: "20px"}} onClick={() => {
+            let output = "";
+            selectedPapers.map((paper) => { output += paper + "\n\n"; })
+            navigator.clipboard.writeText(output);
+          }}>
+            Copy selected papers to clipboard
+          </button>
           {chosenPapers}
         </div>
       </div>
