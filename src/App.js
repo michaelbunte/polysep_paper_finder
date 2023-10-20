@@ -52,7 +52,7 @@ function App() {
 
   let handleAddAll = (e) => {
     let selectedCopy = [...selectedPapers];
-    for(let i = 0; i < filtered_data.length; i++) {
+    for (let i = 0; i < filtered_data.length; i++) {
       if (selectedPapers.includes(filtered_data[i])) { continue; }
       selectedCopy.push(filtered_data[i]);
     }
@@ -110,9 +110,9 @@ function App() {
             email Michael.
           </div>
         </div>
-        <div style={{paddingTop: "20px"}}>
+        <div style={{ paddingTop: "20px" }}>
           <input
-            style={{padding: "5px"}}
+            style={{ padding: "5px" }}
             placeholder='Search Papers'
             type="text"
             onChange={handleSearchChange} />
@@ -122,26 +122,26 @@ function App() {
       <div style={{ display: "flex" }}>
         <div style={{ padding: "0px 20px 20px 20px", flex: "1" }}>
           <h2>Available Papers</h2>
-          <input 
+          <input
             type="button"
             value="Add All"
-            style={{margin:"0px 20px 20px 0px"}}
+            style={{ margin: "0px 20px 20px 0px" }}
             onClick={handleAddAll}
           />
 
           {`${filtered_data.length} matched papers`}
-          
+
           {papers}
         </div>
         <div style={{ padding: "20px", flex: "1" }}>
           <h2>Selected Papers (Sorted in reverse chronological order, by year)</h2>
-          <input 
+          <input
             type="button"
             value="Remove All"
-            style={{marginBottom:"20px"}}
+            style={{ marginBottom: "20px" }}
             onClick={handleRemoveAll}
           />
-          <button style={{marginLeft: "20px"}} onClick={() => {
+          <button style={{ marginLeft: "20px" }} onClick={() => {
             let output = "";
             selectedPapers.map((paper) => { output += paper + "\n\n"; })
             navigator.clipboard.writeText(output);
