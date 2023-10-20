@@ -35,16 +35,28 @@ function App() {
     setSearchText(e.target.value);
   }
 
+  let addToSelected = (index) => {
+    if (selectedPapers.includes(filtered_data[index])) { return; }
+    setSelectedPapers([...selectedPapers, filtered_data[index]].sort(year_sort));
+  }
+
   let handleAddPress = (e) => {
     let item_index = parseInt(e.target.name.split('_')[1]);
-    if (selectedPapers.includes(filtered_data[item_index])) { return; }
-
-    setSelectedPapers([...selectedPapers, filtered_data[item_index]].sort(year_sort));
+    addToSelected(item_index);
   }
 
   let handleRemovePress = (e) => {
     let item_index = parseInt(e.target.name.split('_')[1]);
     setSelectedPapers([...selectedPapers.slice(0, item_index), ...selectedPapers.slice(item_index + 1, selectedPapers.length)]);
+  }
+
+  let handleAddAll = (e) => {
+    let selectedCopy = [...selectedPapers];
+    for(let i = 0; i < filtered_data.length; i++) {
+      if (selectedPapers.includes(filtered_data[i])) { continue; }
+      selectedCopy.push(filtered_data[i]);
+    }
+    setSelectedPapers([...selectedCopy].sort(year_sort));
   }
 
 
@@ -113,6 +125,12 @@ function App() {
       <div style={{ display: "flex" }}>
         <div style={{ padding: "20px", flex: "1" }}>
           <h2>Available Papers</h2>
+          <input 
+            type="button"
+            value="Add All"
+            style={{marginBottom:"20px"}}
+            onClick={handleAddAll}
+          />
           {papers}
         </div>
         <div style={{ padding: "20px", flex: "1" }}>
